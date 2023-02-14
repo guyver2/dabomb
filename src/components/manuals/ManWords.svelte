@@ -33,7 +33,7 @@
 		<div class="subtitle">Lists:</div>
 		<div class="lists">
 			{#each Object.keys(lists) as k}
-				<div class="list_key">"{k}"</div>
+				<div class="list_key"><div>"{k}"</div></div>
 				<div class="list_list">
 					{#each lists[k] as word}
 						<span>{word}</span>
@@ -48,17 +48,25 @@
 	.lists {
 		display: grid;
 		grid-template-columns: 1fr 8fr;
-		place-items: left;
 		justify-content: center;
+		align-items: center;
 		gap: 0px;
 		border: solid black 1px;
 	}
 
 	.list_key {
+		display: flex;
+		place-items: center;
 		font-weight: 700;
 		text-align: center;
+		width: 100%;
+		height: 100%;
 		text-transform: uppercase;
 		border: solid black 1px;
+	}
+
+	.list_key div {
+		width: 100%;
 	}
 
 	.list_list {
@@ -74,7 +82,6 @@
 
 	.flexr {
 		margin: 3em;
-		/* width: 100%; */
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -94,7 +101,7 @@
 	}
 
 	.grid {
-		width: 15%;
+		width: 6em;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		place-items: center;

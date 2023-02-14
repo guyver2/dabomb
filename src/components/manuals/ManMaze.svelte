@@ -11,7 +11,7 @@
 			<li>Find the correct maze from the gold circles' positions.</li>
 			<li>Move the blue dot to the orange one.</li>
 		</ul>
-		<div class="grid">
+		<div class="list">
 			{#each allMazes as maze}
 				<div class="maze">
 					{#each maze.grid as row, r}
@@ -33,9 +33,10 @@
 </main>
 
 <style>
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	.list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 		place-items: center;
 		justify-content: center;
 		row-gap: 10px;

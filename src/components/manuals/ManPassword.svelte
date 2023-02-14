@@ -51,15 +51,17 @@
 
 <style>
 	.grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		column-gap: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 3em;
 		row-gap: 30px;
 		place-items: center;
 		justify-content: center;
 	}
 
 	.item {
+		min-width: 20%;
+		max-width: 20%;
 		font-size: 1.5em;
 	}
 </style>
