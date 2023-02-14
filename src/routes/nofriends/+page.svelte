@@ -12,11 +12,12 @@
 
 <MediaQuery query="(max-width: 800px)" let:matches>
 	{#if matches}
-		{#if showDefuser}
+		<div class="panel {showDefuser ? '' : 'hidden'}">
 			<Defuser />
-		{:else}
+		</div>
+		<div class="panel {showDefuser ? 'hidden' : ''}">
 			<Expert />
-		{/if}
+		</div>
 		<div id="swipe">
 			<button class="swipe-button" on:click={swipe}>{showDefuser ? 'MANUAL' : 'BOMB'}</button>
 		</div>
@@ -57,6 +58,19 @@
 		position: fixed;
 		bottom: 10px;
 		right: 20px;
+	}
+
+	.panel {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		padding-top: 30px;
+		overflow: scroll;
+		height: 93vh;
+	}
+
+	.hidden {
+		display: none;
 	}
 
 	.swipe-button {
