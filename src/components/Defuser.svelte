@@ -1,10 +1,12 @@
 <script lang="ts">
-	import ModBasic from '../components/modules/ModBasic.svelte';
-	import ModKeypad from '../components/modules/ModKeypad.svelte';
-	import ModMemory from '../components/modules/ModMemory.svelte';
-	import ModWires from '../components/modules/ModWires.svelte';
-	import Lives from '../components/Lives.svelte';
-	import Timer from '../components/Timer.svelte';
+	import ModBasic from './modules/ModBasic.svelte';
+	import ModKeypad from './modules/ModKeypad.svelte';
+	import ModMemory from './modules/ModMemory.svelte';
+	import ModWires from './modules/ModWires.svelte';
+	import ModPassword from './modules/ModPassword.svelte';
+	import ModMaze from './modules/ModMaze.svelte';
+	import Lives from './Lives.svelte';
+	import Timer from './Timer.svelte';
 
 	import {
 		seed,
@@ -18,10 +20,20 @@
 	} from '../lib/store';
 
 	const numberOfModules = 3;
-	const mods = { Basic: ModBasic, Keypad: ModKeypad, Memory: ModMemory, Wires: ModWires };
-	registerModule(new Module(1, 'Basic'));
-	registerModule(new Module(2, 'Keypad'));
-	registerModule(new Module(3, 'Memory'));
+	const mods = {
+		Basic: ModBasic,
+		Keypad: ModKeypad,
+		Memory: ModMemory,
+		Wires: ModWires,
+		Password: ModPassword,
+		Maze: ModMaze
+	};
+	let i = 0;
+	registerModule(new Module(i++, 'Basic'));
+	registerModule(new Module(i++, 'Password'));
+	registerModule(new Module(i++, 'Keypad'));
+	registerModule(new Module(i++, 'Memory'));
+	registerModule(new Module(i++, 'Maze'));
 	//registerModule(new Module(4, 'Wires'));
 
 	let countLives = 0;

@@ -1,11 +1,13 @@
 <script lang="ts">
-	import ManBasic from '../components/manuals/ManBasic.svelte';
-	import ManKeypad from '../components/manuals/ManKeypad.svelte';
-	import ManMemory from '../components/manuals/ManMemory.svelte';
+	import ManBasic from './manuals/ManBasic.svelte';
+	import ManKeypad from './manuals/ManKeypad.svelte';
+	import ManMemory from './manuals/ManMemory.svelte';
+	import ManPassword from './manuals/ManPassword.svelte';
+	import ManMaze from './manuals/ManMaze.svelte';
 	// import ManWires from '../components/manuals/ManWires.svelte';
 	import '../style/manual.css';
 
-	const manuals = [ManBasic, ManKeypad, ManMemory];
+	const manuals = [ManBasic, ManKeypad, ManMemory, ManPassword, ManMaze];
 </script>
 
 <div class="flexc">

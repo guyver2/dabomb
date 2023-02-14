@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { seed, loseLife, updateModule, ModuleState } from '../../lib/store';
+	import { seed, loseLife, updateModule, ModuleState, debug } from '../../lib/store';
 	export let done = false;
 	export let id: number;
 	let keys = ['🐵', '🐶', '🦊', '🐱', '🦁', '🦄', '🐮', '🐷', '🐻', '🐼'];
@@ -44,7 +44,6 @@
 				const k1 = keyValue(historyKeys[1]);
 				const k2 = keyValue(historyKeys[2]);
 				const sum = k0 + k1 + k2;
-				console.log(`${sum} = ${k0}+${k1}+${k2}`);
 				if (sum % 2 == 0) {
 					nextExpectedKey = '🦊';
 				} else {
@@ -55,12 +54,13 @@
 			default:
 				console.log('should not show this');
 		}
-		// console.log('stage:', stage, 'next key:', nextExpectedKey);
+		if (debug) {
+			console.log('Keypad:', stage, 'next key:', nextExpectedKey);
+		}
 	}
 
 	function keyValue(key: string): number {
 		const value = (keys.findIndex((e) => e == key) + 1) % 10;
-		// console.log(key, value);
 		return value;
 	}
 
@@ -90,11 +90,12 @@
 				historyKeys.push(val);
 				historyValues.push(keyValue(val));
 			}
-			shuffle();
 		}
 		if (stage == passwordLength) {
 			done = true;
 			updateModule(id, undefined, ModuleState.DONE);
+		} else {
+			shuffle();
 		}
 	}
 

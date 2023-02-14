@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { seed, loseLife, updateModule, ModuleState } from '../../lib/store';
+	import { loseLife, updateModule, ModuleState, debug } from '../../lib/store';
 	export let done = false;
 	export let id: number;
 
@@ -11,6 +11,7 @@
 	let stage = 0;
 	let maxStage = 5;
 	let history = [] as { val: number; pos: number }[];
+	let expected_input = { position: -1, value: -1 };
 
 	function printState() {
 		console.log('instruction:', instruction);
@@ -29,9 +30,10 @@
 	function shuffle() {
 		instruction = Math.floor(4 * Math.random());
 		current_buttons = current_buttons.sort((a, b) => 0.5 - Math.random());
+		updateNextExpectedInput();
 	}
 
-	function validate_input(key_value: number, key_position: number) {
+	function updateNextExpectedInput() {
 		let expected_position = -1;
 		let expected_value = -1;
 		switch (stage) {
@@ -128,9 +130,17 @@
 			default:
 				console.log(`Should not have stage>4 (${stage})`);
 		}
+		expected_input.position = expected_position;
+		expected_input.value = expected_value;
+		if (debug) {
+			console.log('Memory:', stage, 'next input', expected_input);
+		}
+	}
+
+	function validate_input(key_value: number, key_position: number) {
 		if (
-			(expected_position != -1 && expected_position == key_position) ||
-			(expected_value != -1 && expected_value == key_value)
+			(expected_input.position != -1 && expected_input.position == key_position) ||
+			(expected_input.value != -1 && expected_input.value == key_value)
 		) {
 			stage++;
 			history.push({ val: key_value, pos: key_position });

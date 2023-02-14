@@ -21,6 +21,7 @@ h1 {
     font-weight: 600;
     padding-top: 0.8em;
     padding-bottom: 0.3em;
+    text-decoration: underline;
 }
 
 .instruction {
