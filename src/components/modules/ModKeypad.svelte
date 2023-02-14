@@ -1,21 +1,60 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { seed, loseLife, updateModule, ModuleState } from '../../lib/store';
 	export let done = false;
 	export let id: number;
-	let keys = ['🐵', '🐶', '🦊', '🐱', '🦁', '🦄', '🐮', '🐷', '🐻'];
+	let keys = ['🐵', '🐶', '🦊', '🐱', '🦁', '🦄', '🐮', '🐷', '🐻', '🐼'];
 	let guess = '';
-	const password = '🦄🦄🦄🦄';
 	let shaking = false;
+	let stage = 0;
+	let passwordLength = 4;
+	let nextExpectedKey = '';
+	let historyValues = [] as number[];
+	let historyKeys = [] as string[];
 
 	function shuffle() {
 		keys = keys.sort((a, b) => 0.5 - Math.random());
+		updateNextExpectedKey();
 	}
 
-	function batches(values: String[]): String[][] {
+	function updateNextExpectedKey() {
+		switch (stage) {
+			case 0:
+				nextExpectedKey = keys[(keyValue('🦊') + keyValue('🐷') - 1) % 10];
+				break;
+			case 1:
+				const v0 = keyValue('🦁');
+				const v1 = keyValue('🐱');
+				const v2 = keyValue('🦄');
+				const v3 = keyValue('🐼');
+				const idn = Math.floor((v0 * (v1 + v2 + v3)) / 10 + 9) % 10;
+				nextExpectedKey = keys[idn];
+				break;
+			case 2:
+				if (keyValue('🐱') > keyValue('🦁')) {
+					nextExpectedKey = '🦄';
+				} else {
+					nextExpectedKey = keys[(historyValues[0] + 9) % 10];
+				}
+				break;
+			case 1:
+			default:
+				console.log('should not show this');
+		}
+		console.log('stage:', stage, 'next key:', nextExpectedKey);
+	}
+
+	function keyValue(key: string): number {
+		const value = (keys.findIndex((e) => e == key) + 1) % 10;
+		console.log(key, value);
+		return value;
+	}
+
+	function batches(values: string[]): string[][] {
 		return [
-			[values[0], values[1], values[2]],
+			[values[6], values[7], values[8]],
 			[values[3], values[4], values[5]],
-			[values[6], values[7], values[8]]
+			[values[0], values[1], values[2]]
 		];
 	}
 
@@ -26,22 +65,28 @@
 		}, 500);
 	}
 
-	function add(val: String) {
-		shuffle();
-		if (guess.length < password.length) {
-			const temp_guess = guess + val;
-			if (!password.startsWith(temp_guess)) {
+	function add(val: string) {
+		if (stage < passwordLength) {
+			if (nextExpectedKey != val) {
 				loseLife();
 				shake();
 			} else {
-				guess = temp_guess;
+				guess = guess + val;
+				stage++;
+				historyKeys.push(val);
+				historyValues.push(keyValue(val));
 			}
+			shuffle();
 		}
-		if (guess == password) {
+		if (stage == passwordLength) {
 			done = true;
 			updateModule(id, undefined, ModuleState.DONE);
 		}
 	}
+
+	onMount(async () => {
+		shuffle();
+	});
 </script>
 
 <main class="main_{done ? 'done' : 'pending'} {shaking ? 'shaking' : ''}">
@@ -49,13 +94,20 @@
 		<div class="title">
 			<input type="text" value={guess} readonly />
 		</div>
-		{#each batches(keys) as batch, i}
-			<div class="flexr">
-				{#each batch as val, j}
-					<button on:click={() => add(val)}>{val}</button>
+		<div class="flexr">
+			<div class="flexc">
+				{#each batches(keys) as batch, i}
+					<div class="flexr">
+						{#each batch as val, j}
+							<button on:click={() => add(val)}>{val}</button>
+						{/each}
+					</div>
 				{/each}
 			</div>
-		{/each}
+			<div class="lastButton">
+				<button on:click={() => add(keys[9])}>{keys[9]}</button>
+			</div>
+		</div>
 	</div>
 </main>
 
@@ -92,6 +144,11 @@
 		font-size: 2em;
 		background-color: aliceblue;
 		border-radius: 5px;
+	}
+
+	.lastButton button {
+		height: 7em;
+		max-height: 100%;
 	}
 
 	input {

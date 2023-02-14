@@ -9,9 +9,9 @@
 	const width = 400;
 	const height = 400;
 	const wiresHeigth = 40;
-	const wireLength = 320;
+	const wireLength = width - 2 * wiresHeigth;
 	const nbWires = 3 + Math.floor(Math.random() * 4);
-	const spacing = (400 - wiresHeigth * nbWires) / (1 + nbWires);
+	const spacing = (height - wiresHeigth * nbWires) / (1 + nbWires);
 
 	function shake() {
 		shaking = true;
@@ -47,9 +47,9 @@
 			xmlns="http://www.w3.org/2000/svg"
 			id="wires"
 			version="1.1"
-			viewBox="0 0 400 400"
-			height="400"
-			width="400"
+			viewBox="0 0 {width} {height}"
+			{height}
+			{width}
 		>
 			<metadata id="metadata">
 				<rdf:RDF>
@@ -64,8 +64,8 @@
 				<rect
 					y="0"
 					x="0"
-					height="400"
-					width="400"
+					{height}
+					{width}
 					id="bg"
 					style="opacity:1;fill:#f2955e;fill-opacity:1;stroke:none;stroke-width:0.36500001;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
 				/>

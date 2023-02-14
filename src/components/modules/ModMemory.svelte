@@ -9,8 +9,15 @@
 	let errors = 0;
 	let shaking = false;
 	let stage = 0;
-	let maxStage = 1;
+	let maxStage = 5;
 	let history = [] as { val: number; pos: number }[];
+
+	function printState() {
+		console.log('instruction:', instruction);
+		console.log('current_buttons:', current_buttons);
+		console.log('stage:', stage);
+		console.log('history:', history);
+	}
 
 	function shake() {
 		shaking = true;
@@ -76,7 +83,7 @@
 						expected_position = 2;
 						break;
 					case 3:
-						expected_value = 4;
+						expected_value = 3;
 						break;
 					default:
 						console.log(`Should not have instruction>3 (${instruction})`);
@@ -142,10 +149,6 @@
 		}
 	}
 
-	function saveState(state: ModuleState) {
-		updateModule(id, undefined, state);
-	}
-
 	onMount(async () => {
 		shuffle();
 	});
@@ -159,7 +162,7 @@
 				{#each { length: 4 } as _, i}
 					<button
 						on:click={() => validate_input(current_buttons[i], i)}
-						class="instruction_{current_buttons[i]}">{current_buttons[i]}</button
+						class="instruction_{current_buttons[i]}">{current_buttons[i] + 1}</button
 					>
 				{/each}
 			</div>
@@ -204,7 +207,6 @@
 	.instruction {
 		width: 100%;
 		height: 10em;
-		/* border: ; */
 	}
 
 	.instruction_0 {
