@@ -33,20 +33,34 @@
 			case 2:
 				if (keyValue('🐱') > keyValue('🦁')) {
 					nextExpectedKey = '🦄';
+				} else if (keyValue('🐷') < keyValue('🦄')) {
+					nextExpectedKey = '🐻';
 				} else {
 					nextExpectedKey = keys[(historyValues[0] + 9) % 10];
 				}
 				break;
-			case 1:
+			case 3:
+				const k0 = keyValue(historyKeys[0]);
+				const k1 = keyValue(historyKeys[1]);
+				const k2 = keyValue(historyKeys[2]);
+				const sum = k0 + k1 + k2;
+				console.log(`${sum} = ${k0}+${k1}+${k2}`);
+				if (sum % 2 == 0) {
+					nextExpectedKey = '🦊';
+				} else {
+					nextExpectedKey = keys[9];
+				}
+
+				break;
 			default:
 				console.log('should not show this');
 		}
-		console.log('stage:', stage, 'next key:', nextExpectedKey);
+		// console.log('stage:', stage, 'next key:', nextExpectedKey);
 	}
 
 	function keyValue(key: string): number {
 		const value = (keys.findIndex((e) => e == key) + 1) % 10;
-		console.log(key, value);
+		// console.log(key, value);
 		return value;
 	}
 
