@@ -106,7 +106,6 @@
 <style>
 	main {
 		border-radius: 5px;
-		padding: 10px;
 	}
 
 	.main_done {
@@ -132,6 +131,18 @@
 		height: 3em;
 		box-sizing: border-box;
 		border-radius: 5px;
+	}
+
+	@media only screen and (max-width: 800px) {
+		.cell {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 2em;
+			height: 2em;
+			box-sizing: border-box;
+			border-radius: 5px;
+		}
 	}
 
 	.u {
@@ -191,7 +202,7 @@
 	}
 	button {
 		padding: 10px;
-		font-size: 1.5em;
+		font-size: 1.1em;
 		background-color: aliceblue;
 		border-radius: 5px;
 	}

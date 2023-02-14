@@ -24,29 +24,22 @@
 	$: seconds = Math.floor($timer - minutes * 60);
 </script>
 
-<main>
-	<div class="flexc">
-		{#if $timer < 1}
-			<div class="boom">BOOM!</div>
-		{:else}
-			<div class="flexr">
-				<div class="title">TIME LEFT</div>
-				<h1>
-					<span class="mins">{minutes} </span>{minname}
-					<span class="secs">{seconds}</span>s!
-				</h1>
-			</div>
-			<progress value={$timer / totalDuration} />
-		{/if}
-	</div>
-</main>
+<div class="flexc">
+	{#if $timer < 1}
+		<div class="boom">BOOM!</div>
+	{:else}
+		<div class="flexr">
+			<div class="title">TIME LEFT</div>
+			<h1>
+				<span class="mins">{minutes} </span>{minname}
+				<span class="secs">{seconds}</span>s!
+			</h1>
+		</div>
+		<progress value={$timer / totalDuration} />
+	{/if}
+</div>
 
 <style>
-	main {
-		width: 400px;
-		margin: auto;
-	}
-
 	progress {
 		display: block;
 		width: 100%;
@@ -65,6 +58,7 @@
 	}
 	.flexr {
 		display: flex;
+		flex-wrap: wrap;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;

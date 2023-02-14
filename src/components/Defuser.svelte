@@ -59,7 +59,7 @@
 	<div>🎉 WON 🎉</div>
 {:else if countLives > 0 && timer > 0}
 	<div class="flexc">
-		<div class="flexr">
+		<div class="header">
 			<div class="timer">
 				<Timer />
 			</div>
@@ -80,15 +80,30 @@
 {/if}
 
 <style lang="css">
-	.lives {
-		width: 10%;
+	.header {
+		max-width: min(60%, 400px);
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
 	}
+
+	.timer {
+		width: 100%;
+	}
+	.lives {
+		width: 100%;
+	}
+
 	.flexc {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
+
 	.flexr {
 		display: flex;
 		flex-direction: row;
@@ -97,10 +112,12 @@
 		gap: 10px;
 		flex-wrap: wrap;
 	}
+
 	.module {
+		max-width: 90%;
 		border: 1px solid gray;
 		border-radius: 5px;
-		padding: 20px;
+		padding: 5px;
 		margin: 20px;
 		-webkit-box-shadow: 0px 0px 10px 0px rgba(33, 41, 63, 0.35);
 		box-shadow: 0px 0px 10px 0px rgba(33, 41, 63, 0.35);
