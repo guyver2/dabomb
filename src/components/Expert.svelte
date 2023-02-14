@@ -5,7 +5,7 @@
 	// import ManWires from '../components/manuals/ManWires.svelte';
 	import '../style/manual.css';
 
-	const manuals = [ManBasic, ManKeypad, ManMemory, ManMemory, ManMemory];
+	const manuals = [ManBasic, ManKeypad, ManMemory];
 </script>
 
 <div class="flexc">

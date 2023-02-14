@@ -22,7 +22,7 @@
 	registerModule(new Module(1, 'Basic'));
 	registerModule(new Module(2, 'Keypad'));
 	registerModule(new Module(3, 'Memory'));
-	registerModule(new Module(4, 'Wires'));
+	//registerModule(new Module(4, 'Wires'));
 
 	let countLives = 0;
 	let unsubscribeLives = lives.subscribe((value) => {
