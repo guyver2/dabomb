@@ -1,2 +1,3 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Welcome to B💣MB</h1>
+<a href="/defuser">Defuser</a>
+<a href="/expert">Expert</a>
