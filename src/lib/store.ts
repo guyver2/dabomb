@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 export const seed = writable(123456);
 export const lives = writable(5);
 export const maxLives = writable(5);
-export const duration = writable(5*60);
+export const duration = writable(100*60);
 
 
 export enum ModuleState {

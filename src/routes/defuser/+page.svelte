@@ -2,6 +2,7 @@
 	import ModBasic from '../../components/modules/ModBasic.svelte';
 	import ModKeypad from '../../components/modules/ModKeypad.svelte';
 	import ModMemory from '../../components/modules/ModMemory.svelte';
+	import ModWires from '../../components/modules/ModWires.svelte';
 	import Lives from '../../components/Lives.svelte';
 	import Timer from '../../components/Timer.svelte';
 
@@ -20,6 +21,7 @@
 	registerModule(new Module(1, 'Basic'));
 	registerModule(new Module(2, 'Keypad'));
 	registerModule(new Module(3, 'Memory'));
+	registerModule(new Module(4, 'Wires'));
 
 	let countLives = 0;
 	let unsubscribeLives = lives.subscribe((value) => {
@@ -57,6 +59,8 @@
 						<ModKeypad id={mod.id} />
 					{:else if mod.name == 'Memory'}
 						<ModMemory id={mod.id} />
+					{:else if mod.name == 'Wires'}
+						<ModWires id={mod.id} />
 					{/if}
 				</div>
 			{/each}
@@ -82,6 +86,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 10px;
+		flex-wrap: wrap;
 	}
 	.module {
 		border: 1px solid gray;
