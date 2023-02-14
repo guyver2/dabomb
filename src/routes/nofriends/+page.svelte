@@ -55,17 +55,17 @@
 
 	#swipe {
 		position: fixed;
-		bottom: 20px;
+		bottom: 10px;
 		right: 20px;
 	}
 
 	.swipe-button {
-		background-color: #31b0d5;
+		background-color: #d58831;
 		color: white;
 		font-weight: 600;
-		font-size: 2em;
+		font-size: 1em;
 		padding: 10px 20px;
 		border-radius: 5px;
-		border-color: #46b8da;
+		border-color: #eb9d44;
 	}
 </style>
