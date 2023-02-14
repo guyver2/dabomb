@@ -39,6 +39,10 @@ export function registerModule(module:Module) {
     modules.update(items => [...items, module]);
 }
 
+export function clearModules() {
+    modules.update(() => []);
+}
+
 function checkForWinCondition(modules: Module[]){
     let win = true;
     for (const mod of modules) {

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import ModBasic from './modules/ModBasic.svelte';
 	import ModKeypad from './modules/ModKeypad.svelte';
 	import ModMemory from './modules/ModMemory.svelte';
@@ -16,6 +18,7 @@
 		Module,
 		modules,
 		registerModule,
+		clearModules,
 		GameState,
 		gameState
 	} from '../lib/store';
@@ -32,14 +35,6 @@
 	};
 	let i = 0;
 
-	registerModule(new Module(i++, 'Basic'));
-	registerModule(new Module(i++, 'Password'));
-	registerModule(new Module(i++, 'Keypad'));
-	registerModule(new Module(i++, 'Memory'));
-	registerModule(new Module(i++, 'Maze'));
-	registerModule(new Module(i++, 'Words'));
-	//registerModule(new Module(4, 'Wires'));
-
 	let countLives = 0;
 	let unsubscribeLives = lives.subscribe((value) => {
 		countLives = value;
@@ -52,6 +47,16 @@
 	let localGameState = GameState.PENDING;
 	let unsubscribeGameState = gameState.subscribe((value) => {
 		localGameState = value;
+	});
+
+	onMount(async () => {
+		clearModules();
+		registerModule(new Module(i++, 'Basic'));
+		registerModule(new Module(i++, 'Password'));
+		registerModule(new Module(i++, 'Keypad'));
+		registerModule(new Module(i++, 'Memory'));
+		registerModule(new Module(i++, 'Maze'));
+		registerModule(new Module(i++, 'Words'));
 	});
 </script>
 
