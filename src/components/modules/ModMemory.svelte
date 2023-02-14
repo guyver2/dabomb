@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { loseLife, updateModule, ModuleState, debug } from '../../lib/store';
+	import { loseLife, updateModule, ModuleState, debug } from '$lib/store';
 	export let done = false;
 	export let id: number;
 

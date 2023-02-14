@@ -4,7 +4,7 @@ export const seed = writable(123456);
 export const lives = writable(5);
 export const maxLives = writable(5);
 export const duration = writable(100*60);
-export const debug = false;
+export const debug = true;
 
 
 export enum ModuleState {

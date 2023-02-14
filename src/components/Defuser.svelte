@@ -5,6 +5,7 @@
 	import ModWires from './modules/ModWires.svelte';
 	import ModPassword from './modules/ModPassword.svelte';
 	import ModMaze from './modules/ModMaze.svelte';
+	import ModWords from './modules/ModWords.svelte';
 	import Lives from './Lives.svelte';
 	import Timer from './Timer.svelte';
 
@@ -26,14 +27,17 @@
 		Memory: ModMemory,
 		Wires: ModWires,
 		Password: ModPassword,
-		Maze: ModMaze
+		Maze: ModMaze,
+		Words: ModWords
 	};
 	let i = 0;
+
 	registerModule(new Module(i++, 'Basic'));
 	registerModule(new Module(i++, 'Password'));
 	registerModule(new Module(i++, 'Keypad'));
 	registerModule(new Module(i++, 'Memory'));
 	registerModule(new Module(i++, 'Maze'));
+	registerModule(new Module(i++, 'Words'));
 	//registerModule(new Module(4, 'Wires'));
 
 	let countLives = 0;
