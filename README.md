@@ -2,6 +2,8 @@
 
 A clone of Keep Talking And Nobody Explodes
 
+![Screenshot](screenshot.jpg)
+
 ## Runnig the app
 
 ```bash
